@@ -1,6 +1,6 @@
 {
   "name": "ngx-edit-me",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shy2net/ngx-edit-me.git"
@@ -18,6 +18,10 @@
     "url": "https://github.com/shy2net/ngx-edit-me/issues"
   },
   "homepage": "https://github.com/shy2net/ngx-edit-me#readme",
+  "dependencies": {
+    "@ckeditor/ckeditor5-angular": "^1.1.0",
+    "@ckeditor/ckeditor5-build-classic": "^12.1.0"
+  },
   "peerDependencies": {
     "@angular/common": "^6.0.3",
     "@angular/core": "^6.0.3"
