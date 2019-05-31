@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/ngx-edit-me",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  },
+  "whitelistedNonPeerDependencies": [
+    "tslib",
+    "@ckeditor/ckeditor5-angular",
+    "@ckeditor/ckeditor5-build-classic"
+  ]
+}

@@ -1,0 +1,99 @@
+.editable-wrapper {
+  .edit-icon {
+    float: right;
+    position: relative;
+    z-index: 100;
+    visibility: hidden;
+    margin: 5px 5px;
+  }
+
+  .editable-content-wrapper {
+    position: relative;
+
+    .edit-input {
+      // display: flex;
+      // align-items: center;
+      // justify-items: center;
+
+      // &>* {
+      //   flex: 1;
+      // }
+
+      .edit-input-btns {
+        margin-left: .4rem;
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        font-size: .3rem;
+
+        &>* {
+          flex: 0;
+          margin-left: .5rem;
+          display: block;
+          cursor: pointer;
+          padding: .25rem .8rem;
+        }
+      }
+    }
+
+    .loader-wrapper {
+      position: relative;
+
+      .loader {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 101;
+        background-color: #616161a9;
+
+        .spin-icon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          font-size: 1.2rem;
+          margin-top: -0.63rem;
+          color: #fff;
+        }
+      }
+    }
+
+
+  }
+
+  &.inactive {
+    &:hover {
+      .edit-icon {
+        visibility: visible;
+      }
+
+      .editable-content-wrapper {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        padding: .5rem;
+      }
+    }
+  }
+
+  &.active {
+    .edit-icon {
+      display: none;
+    }
+
+    .editable-content {
+      display: none;
+    }
+  }
+
+  &.loading {
+    &:hover {
+      .edit-icon {
+        visibility: hidden;
+      }
+
+      .editable-content-wrapper {
+        border: 0px;
+      }
+    }
+  }
+}

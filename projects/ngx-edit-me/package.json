@@ -1,0 +1,25 @@
+{
+  "name": "ngx-edit-me",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shy2net/ngx-edit-me.git"
+  },
+  "keywords": [
+    "inline-editing",
+    "editing",
+    "admin",
+    "ngx",
+    "angular"
+  ],
+  "author": "Shynet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shy2net/ngx-edit-me/issues"
+  },
+  "homepage": "https://github.com/shy2net/ngx-edit-me#readme",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0"
+  }
+}

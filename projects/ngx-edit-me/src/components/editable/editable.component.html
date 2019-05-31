@@ -1,0 +1,35 @@
+    <div class="editable-wrapper" [ngClass]="[isActive ? 'active' : 'inactive', isLoading ? 'loading' : '']">
+      <a href="javascript: void(0)" class="edit-icon" (click)="onEditClick()">
+        <i class="far fa-edit"></i>
+      </a>
+
+      <div class="editable-content-wrapper">
+        <div #editableContent class="editable-content"></div>
+
+        <div class="edit-input" *ngIf="isActive">
+          <div class="loader-wrapper">
+            <ng-container *ngTemplateOutlet="selectedTemplate"> </ng-container>
+            <div class="loader" *ngIf="isLoading">
+              <i class="fas fa-spinner fa-spin spin-icon"></i>
+            </div>
+          </div>
+
+          <div class="edit-input-btns mt-2">
+            <button [disabled]="isLoading" (click)="onButtonClick('save')" class="btn btn-outline-primary">
+              <i class="fas fa-check mr-1"></i>Save
+            </button>
+            <button [disabled]="isLoading" (click)="onButtonClick('cancel')" class="btn btn-outline-danger">
+              <i class="fas fa-times mr-1"></i>Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #inlineEditor>
+      <input type="text" class="form-control" [(ngModel)]="ngModel" />
+    </ng-template>
+
+    <ng-template #htmlEditor>
+      <ckeditor [editor]="Editor" [(ngModel)]="ngModel"></ckeditor>
+    </ng-template>

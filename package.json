@@ -1,6 +1,17 @@
 {
   "name": "ngx-edit-me",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shy2net/ngx-edit-me.git"
+  },
+  "keywords": [
+    "inline-editing",
+    "editing",
+    "admin",
+    "ngx",
+    "angular"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,6 +19,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "author": "Shynet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shy2net/ngx-edit-me/issues"
   },
   "private": true,
   "dependencies": {
@@ -17,16 +33,24 @@
     "@angular/core": "^6.0.3",
     "@angular/forms": "^6.0.3",
     "@angular/http": "^6.0.3",
+    "bootstrap": "^4.2.1",
+    "@fortawesome/fontawesome-free": "^5.1.0",
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@ckeditor/ckeditor5-angular": "^1.1.0",
+    "@ckeditor/ckeditor5-build-classic": "^12.1.0",
     "core-js": "^2.5.4",
-    "rxjs": "^6.0.0",
+    "rxjs": "6.0.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^6.0.3",
+    "@angular-devkit/build-ng-packagr": "~0.6.8",
     "@angular-devkit/build-angular": "~0.6.8",
+    "ng-packagr": "^3.0.0-rc.2",
+    "tsickle": ">=0.25.5",
+    "tslib": "^1.7.1",
     "typescript": "~2.7.2",
     "@angular/cli": "~6.0.8",
     "@angular/language-service": "^6.0.3",
