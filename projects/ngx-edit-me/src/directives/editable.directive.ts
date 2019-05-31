@@ -22,10 +22,12 @@ import { EditableEvent } from '../models';
 export class EditableDirective implements AfterViewInit, OnChanges {
   @Input() ngxEditMe: boolean;
   @Input() ngxEditMeNgModel: any;
-  @Output() ngxEditMeNgModelChange: EventEmitter<any> = new EventEmitter<any>();
   @Input() ngxEditMeMode: EditMode;
   @Input() ngxEditMeOnSave: (event: EditableEvent) => Promise<boolean>;
+
+  @Output() ngxEditMeNgModelChange: EventEmitter<any> = new EventEmitter<any>();
   @Output() ngxEditMeEvent: EventEmitter<EditableEvent> = new EventEmitter<EditableEvent>();
+
   private editableComponent: ComponentRef<EditableComponent>;
 
   constructor(
