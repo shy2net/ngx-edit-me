@@ -21,8 +21,11 @@ import { EditableEvent } from '../models';
 })
 export class EditableDirective implements AfterViewInit, OnChanges {
   @Input() ngxEditMe: boolean;
+  @Input() ngxEditMeNgModel: any;
   @Input() ngxEditMeMode: EditMode;
+  @Input() ngxEditMeOnSave: (event: EditableEvent) => Promise<boolean>;
   @Output() ngxEditMeEvent: EventEmitter<EditableEvent> = new EventEmitter<EditableEvent>();
+  @Output() ngxEditMeNgModeChange: EventEmitter<any> = new EventEmitter<any>();
   private editableComponent: ComponentRef<EditableComponent>;
 
   constructor(
@@ -36,7 +39,7 @@ export class EditableDirective implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if ('ngxEditMeMode' in changes) {
+    if ('ngxEditMeMode' in changes || 'ngxEditMeOnSave') {
       this.updateEditableComponent();
     }
   }
@@ -48,10 +51,15 @@ export class EditableDirective implements AfterViewInit, OnChanges {
     const editableComponent = this.editableComponent.instance;
 
     if (editableComponent) {
+      editableComponent.onSave = this.ngxEditMeOnSave;
       editableComponent.editMode = this.ngxEditMeMode;
-      editableComponent.editableEvent.subscribe(result => {
-        this.ngxEditMeEvent.next(result);
-      });
+
+      if (this.ngxEditMeNgModel) {
+        editableComponent.ngModel = this.ngxEditMeNgModel;
+      }
+
+      editableComponent.editableEvent.subscribe(result => this.ngxEditMeEvent.next(result));
+      editableComponent.ngModelChange.subscribe(result => this.ngxEditMeNgModeChange.next(result));
     }
   }
 

@@ -28,6 +28,7 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
   @Input() editableElement: HTMLElement;
   @Input() editMode: EditMode;
   @Input() isActive: boolean;
+  @Input() onSave: (event: EditableEvent) => Promise<boolean>;
   @Output() editableEvent: EventEmitter<EditableEvent> = new EventEmitter<EditableEvent>();
 
   @ViewChild('editableContent') editableContentDiv: ElementRef;
@@ -35,7 +36,8 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
   @ViewChild('htmlEditor') htmlEditor: TemplateRef<CKEditorComponent>;
 
   isLoading: boolean;
-  ngModel: any;
+  @Input() ngModel: any;
+  @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
   Editor = ClassicEditor;
   selectedTemplate: TemplateRef<any>;
 
@@ -55,7 +57,9 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
   }
 
   updateSelectedEditTemplate() {
-    if (!this.editMode) this.editMode = EditMode.TEXT;
+    if (!this.editMode) {
+      this.editMode = EditMode.TEXT;
+    }
     switch (this.editMode) {
       case EditMode.HTML:
         this.selectedTemplate = this.htmlEditor;
@@ -96,9 +100,29 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
 
     switch (button) {
       case 'save':
+        if (!this.onSave) {
+          throw new Error(
+            `onSave is not implemented! if you are using ngx-edit-me directive, use ngxEditMeOnSave, if you are using the component use onSave`
+          );
+        }
+
         this.isLoading = true;
-        this.editableEvent.next(editableEvent);
-        // this.isActive = false;
+
+        this.onSave(editableEvent)
+          .then(result => {
+            this.isLoading = false;
+            if (result) {
+              this.editableElement.innerHTML = this.ngModel;
+              this.isActive = false;
+              this.ngModelChange.next(this.ngModel);
+              this.editableEvent.next(editableEvent);
+            }
+          })
+          .catch(err => {
+            this.isLoading = false;
+            throw err;
+          });
+
         break;
       case 'cancel':
         this.editableEvent.next(editableEvent);

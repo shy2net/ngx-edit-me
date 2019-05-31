@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h4 ngxEditMe>This is a simple headline you can edit!</h4>
+      <h4 ngxEditMe [ngxEditMeOnSave]="onSave">{{ header }}</h4>
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-      <div ngxEditMe ngxEditMeMode="html">
+      <div ngxEditMe [ngxEditMeOnSave]="onSave" ngxEditMeMode="html">
         <div style="text-align:center">
 
           <img width="300" alt="Angular Logo"
