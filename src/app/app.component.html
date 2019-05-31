@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h4 ngxEditMe [ngxEditMeOnSave]="onSave">{{ header }}</h4>
+      <h4 ngxEditMe [ngxEditMeOnSave]="getOnSave()" [(ngxEditMeNgModel)]="header">{{ header }}</h4>
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-      <div ngxEditMe [ngxEditMeOnSave]="onSave" ngxEditMeMode="html">
+      <div ngxEditMe [ngxEditMeOnSave]="getOnSave()" ngxEditMeMode="html">
         <div style="text-align:center">
 
           <img width="300" alt="Angular Logo"

@@ -9,11 +9,13 @@ import { EditableEvent } from 'ngx-edit-me';
 export class AppComponent {
   header = `This is a simple headline you can edit!`;
 
-  onSave($event: EditableEvent): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 2000);
-    });
+  getOnSave(): ($event: EditableEvent) => Promise<boolean> {
+    return ($event: EditableEvent) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(true);
+        }, 2000);
+      });
+    };
   }
 }
