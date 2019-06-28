@@ -18,6 +18,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { EditMode } from '../../edit-mode';
 import { EditableEvent, EditableEventType } from '../../models';
+import { EditableService } from '../../editable.service';
 
 @Component({
   selector: 'ngx-editable',
@@ -41,7 +42,7 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
   Editor = ClassicEditor;
   selectedTemplate: TemplateRef<any>;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, private editableService: EditableService) {
     this.cdr.detach();
   }
 

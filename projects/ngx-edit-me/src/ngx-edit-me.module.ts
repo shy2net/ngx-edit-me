@@ -1,10 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, TemplateRef, InjectionToken, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { EditableComponent } from './components/editable/editable.component';
 import { EditableDirective } from './directives/editable.directive';
+import { EditableService } from './editable.service';
+
+export interface NgxEditMeModuleConfigurations {
+  htmlEditor?: TemplateRef<any>;
+  inlineEditor?: TemplateRef<any>;
+  saveListener?: (editable: EditableComponent) => Promise<any>;
+}
+
+export const NgxEditMeModuleConfigurationsService = new InjectionToken<NgxEditMeModuleConfigurations>(
+  'NgxEditMeModuleConfigurations'
+);
 
 @NgModule({
   declarations: [EditableComponent, EditableDirective],
@@ -12,4 +23,18 @@ import { EditableDirective } from './directives/editable.directive';
   entryComponents: [EditableComponent],
   exports: [EditableDirective, EditableComponent]
 })
-export class NgxEditMeModule {}
+export class NgxEditMeModule {
+  static forRoot(config: NgxEditMeModuleConfigurations): ModuleWithProviders {
+    return {
+      ngModule: NgxEditMeModule,
+      providers: [
+        ,
+        EditableService,
+        {
+          provide: NgxEditMeModuleConfigurationsService,
+          useValue: config
+        }
+      ]
+    };
+  }
+}
