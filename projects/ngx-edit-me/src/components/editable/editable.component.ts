@@ -44,6 +44,7 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
 
   constructor(private cdr: ChangeDetectorRef, private editableService: EditableService) {
     this.cdr.detach();
+    this.onSave = this.editableService.saveListener;
   }
 
   ngOnInit() {}

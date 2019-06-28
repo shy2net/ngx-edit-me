@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EditableService } from './src/editable.service';
+import { EditableService } from './editable.service';
 
 describe('EditableService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

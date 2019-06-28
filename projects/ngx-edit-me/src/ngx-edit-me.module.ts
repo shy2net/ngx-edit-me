@@ -6,11 +6,12 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditableComponent } from './components/editable/editable.component';
 import { EditableDirective } from './directives/editable.directive';
 import { EditableService } from './editable.service';
+import { EditableEvent } from './models/editable-event';
 
 export interface NgxEditMeModuleConfigurations {
   htmlEditor?: TemplateRef<any>;
   inlineEditor?: TemplateRef<any>;
-  saveListener?: (editable: EditableComponent) => Promise<any>;
+  saveListener?: (event: EditableEvent) => Promise<any>;
 }
 
 export const NgxEditMeModuleConfigurationsService = new InjectionToken<NgxEditMeModuleConfigurations>(
