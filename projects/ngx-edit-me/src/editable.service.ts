@@ -1,10 +1,9 @@
-import { EditableComponent } from './components/editable/editable.component';
 import { Subject } from 'rxjs';
 
 import { Inject, Injectable, Input, Output, TemplateRef } from '@angular/core';
-import { EditableEvent } from './models/editable-event';
 
-import { NgxEditMeModuleConfigurations, NgxEditMeModuleConfigurationsService } from './ngx-edit-me.module';
+import { EditableEvent } from './models/editable-event';
+import { NgxEditMeModuleConfigurationsService, NgxEditMeModuleConfigurations } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +13,7 @@ export class EditableService {
   @Input() inlineEditor: TemplateRef<any>;
   @Input() saveListener: (event: EditableEvent) => Promise<any>;
 
-  @Output() saved: Subject<EditableComponent> = new Subject<EditableComponent>();
-  @Output() editing: Subject<EditableComponent> = new Subject<EditableComponent>();
+  @Output() saved: Subject<EditableEvent> = new Subject<EditableEvent>();
 
   constructor(@Inject(NgxEditMeModuleConfigurationsService) private config: NgxEditMeModuleConfigurations) {
     if (config) {

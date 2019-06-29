@@ -10,7 +10,7 @@ import { NgxEditMeModule } from 'ngx-edit-me';
   ],
   imports: [
     BrowserModule,
-    NgxEditMeModule
+    NgxEditMeModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -41,7 +41,7 @@
     "@ckeditor/ckeditor5-angular": "^1.1.0",
     "@ckeditor/ckeditor5-build-classic": "^12.1.0",
     "core-js": "^2.5.4",
-    "rxjs": "6.0.0",
+    "rxjs": "^6.3.3",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

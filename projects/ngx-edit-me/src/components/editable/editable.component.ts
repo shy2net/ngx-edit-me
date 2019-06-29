@@ -44,7 +44,6 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
 
   constructor(private cdr: ChangeDetectorRef, private editableService: EditableService) {
     this.cdr.detach();
-    this.onSave = this.editableService.saveListener;
   }
 
   ngOnInit() {}
@@ -102,15 +101,21 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
 
     switch (button) {
       case 'save':
-        if (!this.onSave) {
-          throw new Error(
-            `onSave is not implemented! if you are using ngx-edit-me directive, use ngxEditMeOnSave, if you are using the component use onSave`
-          );
+        let onSave = this.onSave;
+
+        if (!onSave) {
+          if (this.editableService.saveListener) {
+            onSave = this.editableService.saveListener;
+          } else {
+            throw new Error(
+              `onSave is not implemented! if you are using ngx-edit-me directive, use ngxEditMeOnSave, if you are using the component use onSave`
+            );
+          }
         }
 
         this.isLoading = true;
 
-        this.onSave(editableEvent)
+        onSave(editableEvent)
           .then(result => {
             this.isLoading = false;
             if (result) {
@@ -118,6 +123,7 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
               this.isActive = false;
               this.ngModelChange.next(this.ngModel);
               this.editableEvent.next(editableEvent);
+              this.editableService.saved.next(editableEvent);
             }
           })
           .catch(err => {
