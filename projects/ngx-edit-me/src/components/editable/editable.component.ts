@@ -26,6 +26,7 @@ import { EditableService } from '../../editable.service';
   styleUrls: ['./editable.component.scss']
 })
 export class EditableComponent implements OnInit, OnChanges, AfterViewInit, AfterContentInit {
+  @Input() disabled: boolean;
   @Input() editableElement: HTMLElement;
   @Input() editMode: EditMode;
   @Input() isActive: boolean;

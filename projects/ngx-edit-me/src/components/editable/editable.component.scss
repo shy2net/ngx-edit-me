@@ -1,10 +1,10 @@
 .editable-wrapper {
-  .edit-icon {
+  .edit-funcs {
+    visibility: hidden;
     float: right;
     position: relative;
-    z-index: 100;
-    visibility: hidden;
     margin: 5px 5px;
+    z-index: 100;
   }
 
   .editable-content-wrapper {
@@ -62,21 +62,23 @@
 
   }
 
-  &.inactive {
-    &:hover {
-      .edit-icon {
-        visibility: visible;
-      }
+  &.enabled {
+    &.inactive {
+      &:hover {
+        .edit-funcs {
+          visibility: visible;
+        }
 
-      .editable-content-wrapper {
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        padding: .5rem;
+        .editable-content-wrapper {
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          padding: .5rem;
+        }
       }
     }
   }
 
   &.active {
-    .edit-icon {
+    .edit-funcs {
       display: none;
     }
 
@@ -87,7 +89,7 @@
 
   &.loading {
     &:hover {
-      .edit-icon {
+      .edit-funcs {
         visibility: hidden;
       }
 

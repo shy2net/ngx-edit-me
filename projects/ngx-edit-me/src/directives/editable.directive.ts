@@ -47,12 +47,12 @@ export class EditableDirective implements AfterViewInit, OnChanges {
   }
 
   updateEditableComponent() {
-    if (!this.editableComponent) {
-      return;
-    }
+    if (!this.editableComponent) { return; }
+
     const editableComponent = this.editableComponent.instance;
 
     if (editableComponent) {
+      editableComponent.disabled = !this.ngxEditMe;
       editableComponent.onSave = this.ngxEditMeOnSave;
       editableComponent.editMode = this.ngxEditMeMode;
 

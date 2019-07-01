@@ -1,7 +1,11 @@
-    <div class="editable-wrapper" [ngClass]="[isActive ? 'active' : 'inactive', isLoading ? 'loading' : '']">
-      <a href="javascript: void(0)" class="edit-icon" (click)="onEditClick()">
-        <i class="far fa-edit"></i>
-      </a>
+    <div class="editable-wrapper"
+      [ngClass]="[isActive ? 'active' : 'inactive', isLoading ? 'loading' : '', disabled ? 'disabled' : 'enabled']">
+      <div class="edit-funcs">
+        <a href="javascript: void(0)" class="edit-icon" (click)="onEditClick()">
+          <i class="far fa-edit"></i>
+        </a>
+      </div>
+
 
       <div class="editable-content-wrapper">
         <div #editableContent class="editable-content"></div>
