@@ -31,15 +31,7 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
   @Input() editableElement: HTMLElement;
   @Input() editMode: EditMode;
   @Input() isActive: boolean;
-  @Input() editableFunctions: EditableFunction[] = [
-    {
-      html: `<i class="far fa-edit"></i>`,
-      type: 'edit',
-      clickListener: () => {
-        this.toggleEdit();
-      }
-    }
-  ];
+  @Input() editableFunctions: EditableFunction[];
 
   @Input() onSave: (event: EditableEvent) => Promise<boolean>;
   @Output() editableEvent: EventEmitter<EditableEvent> = new EventEmitter<EditableEvent>();
@@ -56,10 +48,7 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
 
   constructor(private cdr: ChangeDetectorRef, private editableService: EditableService) {
     this.cdr.detach();
-
-    if (editableService.editableFunctions) {
-      this.editableFunctions = editableService.editableFunctions;
-    }
+    this.editableFunctions = editableService.editableFunctions;
   }
 
   ngOnInit() {}

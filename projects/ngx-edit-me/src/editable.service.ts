@@ -13,7 +13,15 @@ export class EditableService {
   @Input() htmlEditor: TemplateRef<any>;
   @Input() inlineEditor: TemplateRef<any>;
   @Input() saveListener: (event: EditableEvent) => Promise<any>;
-  @Input() editableFunctions: EditableFunction[];
+  @Input() editableFunctions: EditableFunction[] = [
+    {
+      html: `<i class="far fa-edit"></i>`,
+      type: 'edit',
+      clickListener: (ev: EditableEvent) => {
+        ev.editableComponent.toggleEdit();
+      }
+    }
+  ];
 
   @Output() saved: Subject<EditableEvent> = new Subject<EditableEvent>();
 

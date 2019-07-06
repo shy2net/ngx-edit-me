@@ -1,8 +1,8 @@
     <div class="editable-wrapper"
       [ngClass]="[isActive ? 'active' : 'inactive', isLoading ? 'loading' : '', disabled ? 'disabled' : 'enabled']">
       <div class="edit-funcs">
-        <a href="javascript: void(0)" *ngFor="let editableFunc of editableFunctions" class="edit-icon" (click)="onEditableFunctionClick(editableFunc)"
-          [innerHTML]="editableFunc.html">
+        <a href="javascript: void(0)" *ngFor="let editableFunc of editableFunctions" class="edit-icon"
+          (click)="onEditableFunctionClick(editableFunc)" [innerHTML]="editableFunc.html">
 
         </a>
       </div>
