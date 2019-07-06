@@ -1,8 +1,8 @@
     <div class="editable-wrapper"
       [ngClass]="[isActive ? 'active' : 'inactive', isLoading ? 'loading' : '', disabled ? 'disabled' : 'enabled']">
       <div class="edit-funcs">
-        <a href="javascript: void(0)" *ngFor="let func of functions" class="edit-icon" (click)="onFunctionClick(func)"
-          [innerHTML]="func.html">
+        <a href="javascript: void(0)" *ngFor="let editableFunc of editableFunctions" class="edit-icon" (click)="onEditableFunctionClick(editableFunc)"
+          [innerHTML]="editableFunc.html">
 
         </a>
       </div>
@@ -12,12 +12,9 @@
         <div #editableContent class="editable-content"></div>
 
         <div class="edit-input" *ngIf="isActive">
-          <div class="loader-wrapper">
-            <ng-container *ngTemplateOutlet="selectedTemplate"> </ng-container>
-            <div class="loader" *ngIf="isLoading">
-              <i class="fas fa-spinner fa-spin spin-icon"></i>
-            </div>
-          </div>
+
+          <ng-container *ngTemplateOutlet="selectedTemplate"> </ng-container>
+
 
           <div class="edit-input-btns mt-2">
             <button [disabled]="isLoading" (click)="onButtonClick('save')" class="btn btn-outline-primary">
@@ -28,6 +25,10 @@
             </button>
           </div>
         </div>
+      </div>
+
+      <div class="loader" *ngIf="isLoading">
+        <i class="fas fa-spinner fa-spin spin-icon"></i>
       </div>
     </div>
 

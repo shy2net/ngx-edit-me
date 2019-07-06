@@ -1,4 +1,25 @@
 .editable-wrapper {
+  position: relative;
+
+  .loader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 101;
+    background-color: #616161a9;
+
+    .spin-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 1.2rem;
+      margin-top: -0.63rem;
+      color: #fff;
+    }
+  }
+
   .edit-funcs {
     visibility: hidden;
     float: right;
@@ -36,29 +57,6 @@
           display: block;
           cursor: pointer;
           padding: .25rem .8rem;
-        }
-      }
-    }
-
-    .loader-wrapper {
-      position: relative;
-
-      .loader {
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 101;
-        background-color: #616161a9;
-
-        .spin-icon {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          font-size: 1.2rem;
-          margin-top: -0.63rem;
-          color: #fff;
         }
       }
     }

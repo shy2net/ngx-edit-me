@@ -17,8 +17,8 @@ import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { EditMode } from '../../edit-mode';
-import { EditableEvent, EditableEventType } from '../../models';
 import { EditableService } from '../../editable.service';
+import { EditableEvent, EditableEventType } from '../../models';
 import { EditableFunction } from '../../models/editable-function';
 
 @Component({
@@ -31,23 +31,12 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
   @Input() editableElement: HTMLElement;
   @Input() editMode: EditMode;
   @Input() isActive: boolean;
-  @Input() functions: EditableFunction[] = [
+  @Input() editableFunctions: EditableFunction[] = [
     {
       html: `<i class="far fa-edit"></i>`,
       type: 'edit',
       clickListener: () => {
         this.toggleEdit();
-      }
-    },
-    {
-      html: `<i class="fas fa-trash-alt"></i>`,
-      type: `delete`,
-      clickListener: () => {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            resolve();
-          }, 5000);
-        });
       }
     }
   ];
@@ -67,6 +56,10 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
 
   constructor(private cdr: ChangeDetectorRef, private editableService: EditableService) {
     this.cdr.detach();
+
+    if (editableService.editableFunctions) {
+      this.editableFunctions = editableService.editableFunctions;
+    }
   }
 
   ngOnInit() {}
@@ -94,7 +87,7 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
     }
   }
 
-  async onFunctionClick(func: EditableFunction) {
+  async onEditableFunctionClick(func: EditableFunction) {
     this.isLoading = true;
     const listenerResult = await Promise.resolve(
       func.clickListener(this.getEditableEvent(func.type, this.ngModel))
