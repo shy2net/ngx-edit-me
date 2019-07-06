@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { EditableComponent } from './components/editable/editable.component';
 import { EditableDirective } from './directives/editable.directive';
+import { EditMeCKEditorModule } from './edit-me-ckeditor/edit-me-ckeditor.module';
 import { EditableService } from './editable.service';
 import { NgxEditMeModuleConfigurations, NgxEditMeModuleConfigurationsService } from './models';
 
 @NgModule({
   declarations: [EditableComponent, EditableDirective],
-  imports: [CommonModule, CKEditorModule, FormsModule],
+  imports: [CommonModule, FormsModule, EditMeCKEditorModule],
   entryComponents: [EditableComponent],
   exports: [EditableDirective, EditableComponent]
 })

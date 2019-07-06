@@ -39,5 +39,6 @@
     </ng-template>
 
     <ng-template #htmlEditor>
-      <ckeditor [editor]="Editor" [(ngModel)]="ngModel"></ckeditor>
+      <ngx-edit-me-ckeditor ngDefaultControl [(ngModel)]="ngModel">
+      </ngx-edit-me-ckeditor>
     </ng-template>

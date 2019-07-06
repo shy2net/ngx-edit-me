@@ -13,8 +13,6 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { EditMode } from '../../edit-mode';
 import { EditableService } from '../../editable.service';
@@ -38,12 +36,12 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
 
   @ViewChild('editableContent') editableContentDiv: ElementRef;
   @ViewChild('inlineEditor') inlineEditor: TemplateRef<HTMLElement>;
-  @ViewChild('htmlEditor') htmlEditor: TemplateRef<CKEditorComponent>;
+  @ViewChild('htmlEditor') htmlEditor: TemplateRef<any>;
 
   isLoading: boolean;
   @Input() ngModel: any;
   @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
-  Editor = ClassicEditor;
+
   selectedTemplate: TemplateRef<any>;
 
   constructor(private cdr: ChangeDetectorRef, private editableService: EditableService) {
