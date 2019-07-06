@@ -1,8 +1,9 @@
     <div class="editable-wrapper"
       [ngClass]="[isActive ? 'active' : 'inactive', isLoading ? 'loading' : '', disabled ? 'disabled' : 'enabled']">
       <div class="edit-funcs">
-        <a href="javascript: void(0)" class="edit-icon" (click)="onEditClick()">
-          <i class="far fa-edit"></i>
+        <a href="javascript: void(0)" *ngFor="let func of functions" class="edit-icon" (click)="onFunctionClick(func)"
+          [innerHTML]="func.html">
+
         </a>
       </div>
 
@@ -30,6 +31,8 @@
       </div>
     </div>
 
+
+    <!-- Editor templates -->
     <ng-template #inlineEditor>
       <input type="text" class="form-control" [(ngModel)]="ngModel" />
     </ng-template>

@@ -5,6 +5,10 @@
     position: relative;
     margin: 5px 5px;
     z-index: 100;
+
+    &>* {
+      margin-right: .5rem;
+    }
   }
 
   .editable-content-wrapper {

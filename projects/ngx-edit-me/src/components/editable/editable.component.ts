@@ -19,6 +19,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { EditMode } from '../../edit-mode';
 import { EditableEvent, EditableEventType } from '../../models';
 import { EditableService } from '../../editable.service';
+import { EditableFunction } from '../../models/editable-function';
 
 @Component({
   selector: 'ngx-editable',
@@ -30,6 +31,27 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
   @Input() editableElement: HTMLElement;
   @Input() editMode: EditMode;
   @Input() isActive: boolean;
+  @Input() functions: EditableFunction[] = [
+    {
+      html: `<i class="far fa-edit"></i>`,
+      type: 'edit',
+      clickListener: () => {
+        this.toggleEdit();
+      }
+    },
+    {
+      html: `<i class="fas fa-trash-alt"></i>`,
+      type: `delete`,
+      clickListener: () => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve();
+          }, 5000);
+        });
+      }
+    }
+  ];
+
   @Input() onSave: (event: EditableEvent) => Promise<boolean>;
   @Output() editableEvent: EventEmitter<EditableEvent> = new EventEmitter<EditableEvent>();
 
@@ -72,7 +94,23 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
     }
   }
 
-  getEditableEvent(eventType: EditableEventType, editedContent: string): EditableEvent {
+  async onFunctionClick(func: EditableFunction) {
+    this.isLoading = true;
+    const listenerResult = await Promise.resolve(
+      func.clickListener(this.getEditableEvent(func.type, this.ngModel))
+    );
+    this.isLoading = false;
+  }
+
+  toggleEdit() {
+    this.isActive = !this.isActive;
+
+    if (this.isActive) {
+      this.ngModel = this.editableElement.innerHTML;
+    }
+  }
+
+  getEditableEvent(eventType: EditableEventType | string, editedContent: string): EditableEvent {
     return {
       eventType,
       element: this.editableElement,
@@ -87,14 +125,6 @@ export class EditableComponent implements OnInit, OnChanges, AfterViewInit, Afte
 
   ngAfterContentInit(): void {
     this.cdr.reattach();
-  }
-
-  onEditClick() {
-    this.isActive = !this.isActive;
-
-    if (this.isActive) {
-      this.ngModel = this.editableElement.innerHTML;
-    }
   }
 
   onButtonClick(button: string) {
